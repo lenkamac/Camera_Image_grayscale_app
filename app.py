@@ -6,7 +6,8 @@ from io import BytesIO
 st.title('Color to Grayscale Converter')
 
 # Create a file uploader component allowing the user upload a file
-uploaded_image = st.file_uploader('Upload an image')
+
+uploaded_image = st.file_uploader('Choose an image')
 
 with st.expander('Start Camera'):
     # Start the camera
@@ -25,7 +26,7 @@ if camera_image:
     byte_img = buf.getvalue()
 
     st.download_button('Download Image',
-                       data=byte_img,
+                       data=byte_img, key='camera_image',
                        file_name='Download Image')
 
 if uploaded_image:
@@ -38,5 +39,5 @@ if uploaded_image:
     byte_img = buf.getvalue()
 
     st.download_button('Download Image',
-                       data=byte_img,
+                       data=byte_img, key='upload_image',
                        file_name='Download Image')
